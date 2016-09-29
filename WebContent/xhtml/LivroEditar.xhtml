@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="_modelo.xhtml">
+
+	<ui:define name="titulo">Editar Livro</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form id="form">
+			<h:inputHidden id="idLivro" value="#{livroMB.livro.id}" />
+			<h:panelGrid columns="2">
+
+				<h:outputLabel value="Nome:" for="nome"></h:outputLabel>
+				<p:inputText id="nome" value="#{livroMB.livro.nomeLivro}" size="25"
+					required="true" requiredMessage="O Campo Nome é obrigatório.">
+				</p:inputText>
+				
+				<h:outputLabel value="Ano de Lançamento:" for="ano"></h:outputLabel>
+				<p:inputText id="ano" value="#{livroMB.livro.anoLancamento}" size="25"
+					required="true" requiredMessage="O Ano de Lançamento é obrigatório.">
+				</p:inputText>
+				
+				<h:outputLabel value="Número de páginas:" for="numpag"></h:outputLabel>
+				<p:inputText id="numpag" value="#{livroMB.livro.numPaginas}" size="25"
+					required="true" requiredMessage="O número de páginas é obrigatório.">
+				</p:inputText>
+				
+				<h:outputLabel value="Preço:" for="preco"></h:outputLabel>
+				<p:inputText id="prec" value="#{livroMB.livro.preco}" size="25"
+					required="true" requiredMessage="O preço é obrigatório.">
+				</p:inputText>
+				
+				<h:outputLabel value="Descrição:" for="descricao"></h:outputLabel>
+				<p:inputTextarea id="descricao" value="#{livroMB.livro.descricao}" rows="10" cols="50"
+					required="true" requiredMessage="O Campo Descricao é obrigatório."></p:inputTextarea>
+				
+				<f:facet name="footer">
+					<h:panelGroup>
+						<p:commandButton id="btnSalvar" action="#{livroMB.acaoSalvar}"
+							ajax="false" value="Salvar"></p:commandButton>
+						<p:commandButton id="btnCancelar" action="#{livroMB.acaoCancelar}"
+							ajax="false" immediate="true" value="Cancelar"></p:commandButton>
+					</h:panelGroup>
+				</f:facet>
+
+			</h:panelGrid>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

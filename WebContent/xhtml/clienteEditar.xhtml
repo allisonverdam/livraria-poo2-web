@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="_modelo.xhtml">
+
+	<ui:define name="titulo">Editar Pessoa</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form id="form" prependId="false">
+			<h:inputHidden id="idUsuario" value="#{pessoaMB.pessoa.id}" />
+			<h:panelGrid columns="2">
+
+				<h:outputLabel value="Grupo:" for="grupo"></h:outputLabel>
+				<h:selectOneListbox id="grupo" value="#{pessoaMB.pessoa.grupo}"
+					size="1" converter="grupo-converter">
+					<f:selectItems value="#{pessoaMB.grupos}" var="grupo"
+						itemLabel="#{grupo.descricao}"></f:selectItems>
+				</h:selectOneListbox>
+
+				<h:outputLabel value="Nome:" for="nome"></h:outputLabel>
+				<p:inputText size="50" id="nome" value="#{pessoaMB.pessoa.nome}"
+					required="true" requiredMessage="O Campo Nome é obrigatório."
+					binding="#{pessoaMB.campoNome}">
+					<f:converter converterId="maiusculas"></f:converter>
+				</p:inputText>
+				
+				<h:outputLabel value="Nascimento:" for="nascimento"></h:outputLabel>
+				<p:calendar id="nascimento" pattern="dd/MM/yyyy" 
+							value="#{pessoaMB.pessoa.nascimento}">
+				</p:calendar>
+				
+				<ui:remove>
+					<p:inputText size="10" id="nascimento" 
+								value="#{pessoaMB.pessoa.nascimento}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:inputText>
+				</ui:remove>
+
+				<h:outputLabel value="Telefone Fixo" for="tel"></h:outputLabel>
+				<p:inputText id="tel" value="#{pessoaMB.pessoa.telefoneFixo}"
+					required="true"
+					requiredMessage="O Campo Telefone Fixo é obrigatório."></p:inputText>
+
+				<h:outputLabel value="Celular" for="cel"></h:outputLabel>
+				<p:inputText id="cel" value="#{pessoaMB.pessoa.celular}"
+					required="true" requiredMessage="O Campo Celular é obrigatório."></p:inputText>
+
+				<h:outputLabel value="E-mail:" for="email"></h:outputLabel>
+				<p:inputText size="50" id="email" value="#{pessoaMB.pessoa.email}"
+					validator="email-validator" required="true" requiredMessage="O Campo E-mail é obrigatório.">
+				</p:inputText>
+
+				<h:outputLabel value="Endereço:" for="end"></h:outputLabel>
+				<p:inputText size="50" id="end"
+					value="#{pessoaMB.pessoa.endereco.logradouro}"></p:inputText>
+
+				<h:outputLabel value="Nº:" for="num"></h:outputLabel>
+				<h:panelGrid columns="3" cellpadding="3" cellspacing="0">
+					<p:inputText size="10" id="num"
+						value="#{pessoaMB.pessoa.endereco.numero}"></p:inputText>
+
+					<h:outputLabel value=" Complemento:" for="comp"></h:outputLabel>
+					<p:inputText size="10" id="comp"
+						value="#{pessoaMB.pessoa.endereco.complemento}"></p:inputText>
+				</h:panelGrid>
+
+				<h:outputLabel value="Bairro:" for="bairro"></h:outputLabel>
+				<p:inputText size="50" id="bairro"
+					value="#{pessoaMB.pessoa.endereco.bairro}"></p:inputText>
+
+				<h:outputLabel value="Cidade:" for="cida"></h:outputLabel>
+				<p:inputText size="50" id="cida"
+					value="#{pessoaMB.pessoa.endereco.cidade}"></p:inputText>
+
+				<h:outputLabel value="UF:" for="uf"></h:outputLabel>
+				<h:panelGrid columns="3" cellpadding="3" cellspacing="0">
+					<h:selectOneListbox id="uf" value="#{pessoaMB.pessoa.endereco.uf}"
+						size="1">
+						<f:selectItems value="#{pessoaMB.listaUF}" var="uf"
+							itemValue="#{uf}" itemLabel="#{uf}"></f:selectItems>
+					</h:selectOneListbox>
+
+					<h:outputLabel value=" CEP:" for="cep"></h:outputLabel>
+					<p:inputMask size="10" id="cep" mask="99999-999"
+						value="#{pessoaMB.pessoa.endereco.cep}"></p:inputMask>
+				</h:panelGrid>
+
+				<f:facet name="footer">
+					<h:panelGroup layout="block" style="text-align: center">
+						<p:commandButton ajax="false" id="btnSalvar"
+							action="#{pessoaMB.acaoSalvar}" value="Salvar"
+							binding="#{pessoaMB.botaoConfirmar}"
+							actionListener="#{pessoaMB.testeListener}">
+							<f:setPropertyActionListener target="#{pessoaMB.confirmado}" value="S" />
+						</p:commandButton>
+						<p:commandButton ajax="false" id="btnCancelar"
+							action="#{pessoaMB.acaoCancelar}" immediate="true"
+							value="Cancelar">
+							<f:setPropertyActionListener target="#{pessoaMB.confirmado}" value="N" />
+						</p:commandButton>
+					</h:panelGroup>
+				</f:facet>
+
+			</h:panelGrid>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>
