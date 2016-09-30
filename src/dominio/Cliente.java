@@ -15,8 +15,8 @@ public class Cliente implements EntityIdSequencial, Serializable
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(generator = "USUARIO_ID", strategy = GenerationType.SEQUENCE)
-	@SequenceGenerator(name = "USUARIO_ID", sequenceName = "SEQ_USUARIO", allocationSize = 1)
+	@GeneratedValue(generator = "CLIENTE_ID", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "CLIENTE_ID", sequenceName = "SEQ_CLIENTE", allocationSize = 1)
 	private Long id;
 
 	@Column(unique = true)

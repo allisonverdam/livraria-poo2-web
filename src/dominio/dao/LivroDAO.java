@@ -17,12 +17,12 @@ public class LivroDAO extends JpaDAO<Livro> {
 		super(manager);
 	}
 	
-	public Livro lerPorNome(String nome)
+	public Livro lerPorNome(String nomeLivro)
 	{
 		Livro resultado;
 
-		Query consulta = this.getEntityManager().createQuery("from Livro u where u.nome = :nome");
-		consulta.setParameter("nome", nome);
+		Query consulta = this.getEntityManager().createQuery("from Livro u where u.nomeLivro = :nomeLivro");
+		consulta.setParameter("nomeLivro", nomeLivro);
 
 		try
 		{

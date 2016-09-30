@@ -10,31 +10,14 @@
 
 <ui:composition template="_modelo.xhtml">
 
-	<ui:define name="titulo">Cadastro de Tarefas</ui:define>
-
 	<ui:define name="opcoesMenu">
-		<p:commandButton ajax="false" type="push" value="Incluir Nova Tarefa"
-			action="#{tarefaMB.acaoAbrirInclusao}" immediate="true"
+		<p:commandButton ajax="false" type="push" value="Incluir Novo Livro"
+			action="#{livroMB.acaoAbrirInclusao}" immediate="true"
 			image="ui-icon-document" />
 	</ui:define>
 
 	<ui:define name="conteudo">
-		<h:form id="form">
-
-			<h:panelGrid columns="3">
-				<h:outputLabel value="Filtrar Grupo:" for="grupo"></h:outputLabel>
-				<h:selectOneListbox id="grupo"
-					size="1">
-					<f:selectItem itemLabel="Selecione..." itemValue="0"></f:selectItem>
-					<f:selectItems value="#{livroMB.livros}" var="grupo"
-						itemLabel="#{grupo.descricao}"></f:selectItems>
-				</h:selectOneListbox>
-				<p:commandButton ajax="false" update="lista" id="btnFiltrar"
-						action="#{livroMB.acaoListar()}" value="Filtrar"></p:commandButton>
-			</h:panelGrid>
-
-			<br />
-			
+		<h:form id="form">			
 			<p:dataTable id="lista" var="item" value="#{livroMB.livros}"
 				paginator="true" rows="3" rowsPerPageTemplate="5,10,15"
 				selectionMode="single">
