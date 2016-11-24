@@ -9,12 +9,10 @@
 
 <ui:composition template="_modelo.xhtml">
 
-	<ui:define name="titulo">Falha durante o processamento</ui:define>
+	<ui:define name="titulo">#{msgs.falha}</ui:define>
 
 	<ui:define name="conteudo">
-		<p>Prezado Usuário,</p>
-		<p>Lamentamos a ocorrência de uma falha no processamento desta requisição.</p>
-		<p>Por favor entre em contato com o suporte técnico, ou tente novamente mais tarde.</p>
+		<h:outputText value="#{msgs.notificacao}" escape="false"></h:outputText>
 	</ui:define>
 
 </ui:composition>

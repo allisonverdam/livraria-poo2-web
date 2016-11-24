@@ -105,6 +105,7 @@ public class LivroMB {
 		 * Deve limpar o ID com valor zero, pois o JSF sempre converte o campo
 		 * vazio para um LONG = 0.
 		 */
+		System.out.println("Livro:"+this.getLivro().getEditora());
 		if ((this.getLivro().getId() != null)
 				&& (this.getLivro().getId().longValue() == 0))
 			this.getLivro().setId(null);

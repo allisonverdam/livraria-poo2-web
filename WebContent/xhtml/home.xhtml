@@ -9,21 +9,21 @@
 
 <ui:composition template="_modelo.xhtml">
 
-	<ui:define name="titulo">Menu Principal</ui:define>
+	<ui:define name="titulo">#{msgs.menu}</ui:define>
 
 	<ui:define name="conteudo">
 		<h:form>
 			<p:menu style="width: 280px">
-				<p:submenu label="Opções do Cadastro">
-					<p:menuitem value="Manter livro"
+				<p:submenu label="#{msgs.cadastro}">
+					<p:menuitem value="#{msgs.livro}"
 						action="#{livroMB.acaoListar}" ajax="false"
 						icon="ui-icon ui-icon-note" />
 						
-						<p:menuitem value="Manter Editora"
+						<p:menuitem value="#{msgs.editora}"
 						action="#{editoraMB.acaoListar}" ajax="false"
 						icon="ui-icon ui-icon-person" />	
 						
-						<p:menuitem value="Cadastro de Cliente"
+						<p:menuitem value="#{msgs.cliente}"
 						action="#{clienteMB.acaoListar}" ajax="false"
 						icon="ui-icon ui-icon-person" />	
 										
@@ -39,8 +39,8 @@
 						-->
 				</p:submenu>
 
-				<p:submenu label="Fechar o Sistema">
-					<p:menuitem value="Sair"
+				<p:submenu label="#{msgs.fecharSistema}">
+					<p:menuitem value="#{msgs.sair}"
 						action="#{loginMB.acaoLogout}" ajax="false"
 						icon="ui-icon ui-icon-close" />
 				</p:submenu>

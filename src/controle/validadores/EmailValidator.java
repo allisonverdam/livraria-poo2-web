@@ -20,11 +20,7 @@ public class EmailValidator implements Validator {
 		
 		String valorS = (String) valor;
 		if (valorS.indexOf("@") <= 0)
-		{
-			//FacesContext fc = FacesContext.getCurrentInstance();
-			//ResourceBundle rb = ResourceBundle.getBundle("messages.titulos",fc.getViewRoot().getLocale());
-			//String mensagem = rb.getString("exceptionEmailInvalido");
-			
+		{			
 			String mensagem = JSFUtil.getMensagemI18N("exceptionEmailInvalido");
 
 			throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, mensagem, null));

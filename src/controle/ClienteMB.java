@@ -93,8 +93,9 @@ public class ClienteMB
 
 			if (objetoDoBanco != null)
 			{
-				JSFUtil.retornarMensagemErro("Outro usuário com o mesmo login já existe no sistema.", null, null);
+				JSFUtil.retornarMensagemErro(JSFUtil.getMensagemI18N("usuarioMesmoLogin"), null, null);
 				return null; // volta p/mesma página
+				
 			}
 		}
 

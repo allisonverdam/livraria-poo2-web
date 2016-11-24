@@ -10,10 +10,10 @@
 
 <ui:composition template="_modelo.xhtml">
 
-	<ui:define name="titulo">Cadastro de Clientes</ui:define>
+	<ui:define name="titulo">#{msgs.cadastroCliente}</ui:define>
 
 	<ui:define name="opcoesMenu">
-		<p:commandButton ajax="false" type="push" value="Novo Cliente"
+		<p:commandButton ajax="false" type="push" value="#{msgs.novoCliente}"
 			action="#{clienteMB.acaoAbrirInclusao}" immediate="true"
 			image="ui-icon-document" />
 	</ui:define>
@@ -27,50 +27,50 @@
 				selectionMode="single" rendered="#{not empty clienteMB.clientes}">
 
 				<f:facet name="header">
-					<h:outputText value="Lista de Clientes Cadastrados:" />
+					<h:outputText value="#{msgs.listaClienteCadastrados}" />
 				</f:facet>
 
 				<p:column>
 					<f:facet name="header">
-						<h:outputText value="Nome" />
+						<h:outputText value="#{msgs.nome}" />
 					</f:facet>
 					<h:outputText value="#{item.nome}" />
 				</p:column>
 
 				<p:column>
 					<f:facet name="header">
-						<h:outputText value="Login" />
+						<h:outputText value="#{msgs.login}" />
 					</f:facet>
 					<h:outputText value="#{item.login}" />
 				</p:column>
 
 				<p:column>
 					<f:facet name="header">
-						<h:outputText value="Ações" />
+						<h:outputText value="#{msgs.acoes}" />
 					</f:facet>
 					<h:panelGroup>
-						<p:commandButton ajax="false" type="push" value="Alterar"
+						<p:commandButton ajax="false" type="push" value="#{msgs.alterar}"
 							action="#{clienteMB.acaoAbrirAlteracao}" immediate="true"
 							image="ui-icon-pencil">
 							<f:param value="#{item.id}" name="itemId" />
 						</p:commandButton>
 
-						<p:commandButton type="button" value="Excluir"
+						<p:commandButton type="button" value="#{msgs.excluir}"
 							onclick="conf#{item.id}.show()" image="ui-icon-close">
 						</p:commandButton>
 
-						<p:confirmDialog message="Deseja excluir este registro?"
+						<p:confirmDialog message="#{msgs.desejaExcluir}"
 							showEffect="bounce" hideEffect="explode" 
-							header="Confirmação de Exclusão" severity="alert"
+							header="#{msgs.confirmarExclusao}" severity="alert"
 							widgetVar="conf#{item.id}">
 
-							<p:commandButton ajax="false" type="push" value="Sim"
+							<p:commandButton ajax="false" type="push" value="#{msgs.sim}"
 								action="#{clienteMB.acaoExcluir}" immediate="true"
 								image="ui-icon-check">
 								<f:param value="#{item.id}" name="itemId" />
 							</p:commandButton>
 
-							<p:commandButton value="Não" onclick="conf#{item.id}.hide()"
+							<p:commandButton value="#{msgs.nao}" onclick="conf#{item.id}.hide()"
 								type="button" image="ui-icon-close" />
 						</p:confirmDialog>
 

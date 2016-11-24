@@ -6,7 +6,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
-	<title><ui:insert name="titulo">Título</ui:insert>
+	<title><ui:insert name="titulo">#{msgs.titulo}</ui:insert>
 	</title>
 	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 	<link rel="stylesheet" type="text/css" href="../css/estilo.css" />
@@ -24,7 +24,7 @@
 
 					<p:toolbar>
 						<p:toolbarGroup align="left">
-							<p:commandButton ajax="false" type="push" value="Início"
+							<p:commandButton ajax="false" type="push" value="#{msgs.inicio}"
 								action="home" image="ui-icon-home"
 								rendered="#{loginMB.autenticado}" />
 
@@ -32,7 +32,7 @@
 						</p:toolbarGroup>
 
 						<p:toolbarGroup align="right">
-							<h:outputText value="Usuário: "></h:outputText>
+							<h:outputText value="#{msgs.usuario}: "></h:outputText>
 							<h:outputText value="#{loginMB.cliente.nome}" styleClass="titulo"></h:outputText>
 
 							<p:divider />
@@ -63,7 +63,7 @@
 			</div>
 
 			<f:facet name="footer">
-				<h:outputText value="&copy; Todos os direitos reservados."></h:outputText>
+				<h:outputText value="&copy; #{msgs.direitos}"></h:outputText>
 				<ui:insert name="rodape" />
 			</f:facet>
 

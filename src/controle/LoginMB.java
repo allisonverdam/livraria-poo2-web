@@ -16,7 +16,7 @@ public class LoginMB implements Serializable
 	private static final long serialVersionUID = 1L;
 
 	private boolean autenticado = false;
-	private Cliente Cliente = new Cliente(null, null, "(não autenticado)", null);
+	private Cliente Cliente = new Cliente(null, null, JSFUtil.getMensagemI18N("naoAutenticado"), null);
 
 	private String login;
 	private String senha;
@@ -96,7 +96,7 @@ public class LoginMB implements Serializable
 
 		if (ClienteDoBanco == null)
 		{
-			JSFUtil.retornarMensagemErro("Usuário não existe.", null, null);
+			JSFUtil.retornarMensagemErro(JSFUtil.getMensagemI18N("userNaoExiste"), null, null);
 			return "login";
 		}
 		else if (ClienteDoBanco.senhaCorreta(this.getSenha()))
@@ -109,7 +109,7 @@ public class LoginMB implements Serializable
 		}
 		else
 		{
-			JSFUtil.retornarMensagemErro("Senha inválida.", null, null);
+			JSFUtil.retornarMensagemErro(JSFUtil.getMensagemI18N("senhaInvalida"), null, null);
 			return "login";
 		}
 	}
@@ -119,7 +119,7 @@ public class LoginMB implements Serializable
 	 */
 	public String acaoLogout()
 	{
-		this.Cliente = new Cliente(null, null, "(não autenticado)", null);
+		this.Cliente = new Cliente(null, null, JSFUtil.getMensagemI18N("naoAutenticado"), null);
 		this.autenticado = false;
 		this.login = null;
 		this.senha = null;

@@ -9,28 +9,28 @@
 
 <ui:composition template="_modelo.xhtml">
 
-	<ui:define name="titulo">Editar Editora</ui:define>
+	<ui:define name="titulo">#{msgs.editarEditora}</ui:define>
 
 	<ui:define name="conteudo">
 		<h:form id="form">
 			<h:inputHidden id="idLivro" value="#{editoraMB.editora.id}" />
 			<h:panelGrid columns="2">
 
-				<h:outputLabel value="Nome:" for="nome"></h:outputLabel>
+				<h:outputLabel value="#{msgs.nome}:" for="nome"></h:outputLabel>
 				<p:inputText id="nome" value="#{editoraMB.editora.nomeEditora}" size="25"
-					required="true" requiredMessage="O Campo Nome é obrigatório.">
+					required="true">
 				</p:inputText>				
 				
-				<h:outputLabel value="Descrição:" for="descricao"></h:outputLabel>
+				<h:outputLabel value="#{msgs.descricao}" for="descricao"></h:outputLabel>
 				<p:inputTextarea id="descricao" value="#{editoraMB.editora.descricao}" rows="10" cols="50"
-					required="true" requiredMessage="O Campo Descricao é obrigatório."></p:inputTextarea>
+					required="true"></p:inputTextarea>
 				
 				<f:facet name="footer">
 					<h:panelGroup>
 						<p:commandButton id="btnSalvar" action="#{editoraMB.acaoSalvar}"
-							ajax="false" value="Salvar"></p:commandButton>
+							ajax="false" value="#{msgs.salvar}"></p:commandButton>
 						<p:commandButton id="btnCancelar" action="#{editoraMB.acaoCancelar}"
-							ajax="false" immediate="true" value="Cancelar"></p:commandButton>
+							ajax="false" immediate="true" value="#{msgs.cancelar}"></p:commandButton>
 					</h:panelGroup>
 				</f:facet>
 

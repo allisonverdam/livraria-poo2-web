@@ -11,7 +11,7 @@
 <ui:composition template="_modelo.xhtml">
 
 	<ui:define name="opcoesMenu">
-		<p:commandButton ajax="false" type="push" value="Incluir Novo Livro"
+		<p:commandButton ajax="false" type="push" value="#{msgs.incluirNovoLivro}"
 			action="#{livroMB.acaoAbrirInclusao}" immediate="true"
 			image="ui-icon-document" />
 	</ui:define>
@@ -24,77 +24,77 @@
 				selectionMode="single">
 
 				<f:facet name="header">
-					<h:outputText value="Lista de Livros:" />
+					<h:outputText value="#{msgs.listaLivros}" />
 				</f:facet>
 				<p:column sortBy="#{item.nomeLivro}">
 					<f:facet name="header">
-						<h:outputText value="Nome" />
+						<h:outputText value="#{msgs.nome}" />
 					</f:facet>
 					<h:outputText value="#{item.nomeLivro}" />
 				</p:column>
 
 				<p:column sortBy="#{item.anoLancamento}">
 					<f:facet name="header">
-						<h:outputText value="Ano de Lançamento" />
+						<h:outputText value="#{msgs.anoLancamento}" />
 					</f:facet>
 					<h:outputText value="#{item.anoLancamento}"/>
 				</p:column>
 				
 				<p:column sortBy="#{item.editora.descricao}">
 					<f:facet name="header">
-						<h:outputText value="Editora" />
+						<h:outputText value="#{msgs.editora}" />
 					</f:facet>
 					<h:outputText value="#{item.editora.nomeEditora}" />
 				</p:column>
 
 				<p:column sortBy="#{item.descricao}">
 					<f:facet name="header">
-						<h:outputText value="Descrição" />
+						<h:outputText value="#{msgs.descricao}" />
 					</f:facet>
 					<h:outputText value="#{item.descricao}" />
 				</p:column>
 				
 				<p:column sortBy="#{item.numPaginas}">
 					<f:facet name="header">
-						<h:outputText value="Numero de Páginas" />
+						<h:outputText value="#{msgs.numPaginas}" />
 					</f:facet>
 					<h:outputText value="#{item.numPaginas}" />
 				</p:column>		
 				
 				<p:column sortBy="#{item.preco}">
 					<f:facet name="header">
-						<h:outputText value="Preço" />
+						<h:outputText value="#{msgs.preco}" />
 					</f:facet>
 					<h:outputText value="#{item.preco}" />
 				</p:column>	
 
 				<p:column>
 					<f:facet name="header">
-						<h:outputText value="Ações" />
+						<h:outputText value="#{msgs.acoes}" />
 					</f:facet>
 					<h:panelGroup>
-						<p:commandButton ajax="false" type="push" value="Alterar"
+						<p:commandButton ajax="false" type="push" value="#{msgs.alterar}"
 							action="#{livroMB.acaoAbrirAlteracao}" immediate="true"
 							image="ui-icon-pencil">
 							<f:param value="#{item.id}" name="itemId" />
 						</p:commandButton>
 
-						<p:commandButton type="button" value="Excluir"
+						<p:commandButton type="button" value="#{msgs.excluir}"
 							onclick="conf#{item.id}.show()" image="ui-icon-close">
 						</p:commandButton>
 
-						<p:confirmDialog message="Deseja excluir este registro?"
+						<p:confirmDialog message="#{msgs.desejaExcluir}"
 							showEffect="bounce" hideEffect="explode" 
-							header="Confirmação de Exclusão" severity="alert"
+							header="#{msgs.confirmarExclusao}" severity="alert"
 							widgetVar="conf#{item.id}">
 
-							<p:commandButton ajax="false" type="push" value="Sim"
+							<p:commandButton ajax="false" type="push" value="#{msgs.sim}"
 								action="#{livroMB.acaoExcluir}" immediate="true"
 								image="ui-icon-check">
 								<f:param value="#{item.id}" name="itemId" />
 							</p:commandButton>
 
-							<p:commandButton value="Não" onclick="conf#{item.id}.hide()"
+							<p:commandButton value="#{msgs.nao}" onclick="conf#{item.id}.hide()"
 								type="button" image="ui-icon-close" />
 						</p:confirmDialog>
 					</h:panelGroup>

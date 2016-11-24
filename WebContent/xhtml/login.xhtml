@@ -9,20 +9,20 @@
 
 <ui:composition template="_modelo.xhtml">
 
-	<ui:define name="titulo">Autenticação</ui:define>
+	<ui:define name="titulo">#{msgs.msgAutenticacao}</ui:define>
 
 	<ui:define name="conteudo">
 		<h:form id="form">
-			<p:panel header="Digite seu usuário e senha" style="width: 400px">
+			<p:panel header="#{msgs.msgUsuarioSenha}" style="width: 400px">
 				<h:panelGrid columns="2">
 
-					<h:outputLabel value="Login:" for="login"></h:outputLabel>
+					<h:outputLabel value="#{msgs.campoLogin}:" for="login"></h:outputLabel>
 					<p:inputText id="login" value="#{loginMB.login}" required="true"
 						requiredMessage="O Campo Login é obrigatório."></p:inputText>
 
-					<h:outputLabel value="Senha:" for="senha"></h:outputLabel>
+					<h:outputLabel value="#{msgs.campoSenha}:" for="senha"></h:outputLabel>
 					<p:password feedback="false" id="senha" value="#{loginMB.senha}"
-						required="true" requiredMessage="O Campo Senha é obrigatório."></p:password>
+						required="true"></p:password>
 
 					<f:facet name="footer">
 						<h:panelGroup layout="block" style="text-align: center">
@@ -32,7 +32,7 @@
 								requiredMessage="As palavras da imagem não foram digitadas." />  -->
 							<br />
 							<p:commandButton ajax="false" id="btnEnviar"
-								action="#{loginMB.acaoAutenticar}" value="Enviar"></p:commandButton>
+								action="#{loginMB.acaoAutenticar}" value="#{msgs.botaoEnviar}"></p:commandButton>
 
 						</h:panelGroup>
 					</f:facet>

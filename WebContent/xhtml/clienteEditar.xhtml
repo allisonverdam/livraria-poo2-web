@@ -9,34 +9,33 @@
 
 <ui:composition template="_modelo.xhtml">
 
-	<ui:define name="titulo">Editar Cliente</ui:define>
+	<ui:define name="titulo">#{msgs.editarCliente}</ui:define>
 
 	<ui:define name="conteudo">
 		<h:form id="form">
 			<h:inputHidden id="idCliente" value="#{clienteMB.cliente.id}" />
 			<h:panelGrid columns="2">
 
-				<h:outputLabel value="Login:" for="login"></h:outputLabel>
+				<h:outputLabel value="#{msgs.login}:" for="login"></h:outputLabel>
 				<p:inputText id="login" value="#{clienteMB.cliente.login}"
-					required="true" requiredMessage="O Campo Login é obrigatório."></p:inputText>
+					required="true"></p:inputText>
 					
-				<h:outputLabel value="Email:" for="email"></h:outputLabel>
+				<h:outputLabel value="#{msgs.email}:" for="email"></h:outputLabel>
 				<p:inputText id="email" value="#{clienteMB.cliente.email}"
-					validator="email-validator" required="true" requiredMessage="O Campo Email é obrigatório."></p:inputText>
+					validator="email-validator"></p:inputText>
 
-				<h:outputLabel value="Senha:" for="senha"></h:outputLabel>
+				<h:outputLabel value="#{msgs.senha}:" for="senha"></h:outputLabel>
 				<p:password feedback="false" id="senha"
-					value="#{clienteMB.cliente.senha}" required="true"
-					requiredMessage="O Campo Senha é obrigatório."></p:password>
+					value="#{clienteMB.cliente.senha}" required="true"></p:password>
 
-				<h:outputLabel value="Nome:" for="nome"></h:outputLabel>
+				<h:outputLabel value="#{msgs.nome}:" for="nome"></h:outputLabel>
 				<p:inputText id="nome" value="#{clienteMB.cliente.nome}"
-					required="true" requiredMessage="O Campo Nome é obrigatório."></p:inputText>
+					required="true"></p:inputText>
 
 				<f:facet name="footer">
 					<h:panelGroup layout="block" style="text-align: center">
 						<p:commandButton ajax="false" id="btnSalvar"
-							action="#{clienteMB.acaoSalvar}" value="Salvar"></p:commandButton>
+							action="#{clienteMB.acaoSalvar}" value="#{msgs.salvar}:"></p:commandButton>
 						<p:commandButton ajax="false" id="btnCancelar"
 							action="#{clienteMB.acaoCancelar}" immediate="true" value="Cancelar"></p:commandButton>
 					</h:panelGroup>

@@ -6,11 +6,10 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
 import dominio.Editora;
-import dominio.Livro;
 import dominio.dao.EditoraDAO;
 
-@FacesConverter(value="livro-converter", forClass=Editora.class)
-public class LivroConverter implements Converter {
+@FacesConverter(value="editora-converter", forClass=Editora.class)
+public class EditoraConverter implements Converter {
 
 	@Override
 	public Object getAsObject(FacesContext arg0, UIComponent componente,
@@ -36,8 +35,8 @@ public class LivroConverter implements Converter {
 	public String getAsString(FacesContext arg0, UIComponent componente,
 			Object objeto) {
 
-		if (objeto instanceof Livro)
-			return ((Livro) objeto).getId().toString();
+		if (objeto instanceof Editora)
+			return ((Editora) objeto).getId().toString();
 
 		return null;
 	}

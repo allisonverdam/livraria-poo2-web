@@ -9,51 +9,51 @@
 
 <ui:composition template="_modelo.xhtml">
 
-	<ui:define name="titulo">Editar Livro</ui:define>
+	<ui:define name="titulo">#{msgs.editarLivro}</ui:define>
 
 	<ui:define name="conteudo">
 		<h:form id="form">
 			<h:inputHidden id="idLivro" value="#{livroMB.livro.id}" />
 			<h:panelGrid columns="2">
-			
-			<h:outputLabel value="Editora:" for="editora"></h:outputLabel>
+
+				<h:outputLabel value="#{msgs.editora}:" for="editora"></h:outputLabel>
 				<h:selectOneListbox id="editora" value="#{livroMB.livro.editora}"
-					size="1" converter="livro-converter">
+					size="1" converter="editora-converter">
 					<f:selectItems value="#{livroMB.editoras}" var="editora"
-						itemLabel="#{editora.descricao}"></f:selectItems>
+						itemLabel="#{editora.nomeEditora}"></f:selectItems>
 				</h:selectOneListbox>
 
-				<h:outputLabel value="Nome:" for="nome"></h:outputLabel>
+				<h:outputLabel value="#{msgs.nome}" for="nome"></h:outputLabel>
 				<p:inputText id="nome" value="#{livroMB.livro.nomeLivro}" size="25"
-					required="true" requiredMessage="O Campo Nome é obrigatório.">
+					required="true">
 				</p:inputText>
-				
-				<h:outputLabel value="Ano de Lançamento:" for="ano"></h:outputLabel>
-				<p:inputText id="ano" value="#{livroMB.livro.anoLancamento}" size="25"
-					required="true" requiredMessage="O Ano de Lançamento é obrigatório.">
+
+				<h:outputLabel value="#{msgs.anoLancamento}:" for="ano"></h:outputLabel>
+				<p:inputText id="ano" value="#{livroMB.livro.anoLancamento}"
+					size="25" required="true">
 				</p:inputText>
-				
-				<h:outputLabel value="Número de páginas:" for="numpag"></h:outputLabel>
-				<p:inputText id="numpag" value="#{livroMB.livro.numPaginas}" size="25"
-					required="true" requiredMessage="O número de páginas é obrigatório.">
+
+				<h:outputLabel value="#{msgs.numPaginas}:" for="numpag"></h:outputLabel>
+				<p:inputText id="numpag" value="#{livroMB.livro.numPaginas}"
+					size="25" required="true">
 				</p:inputText>
-				
-				<h:outputLabel value="Preço:" for="preco"></h:outputLabel>
+
+				<h:outputLabel value="#{msgs.preco}" for="preco"></h:outputLabel>
 				<p:inputText id="prec" value="#{livroMB.livro.preco}" size="25"
-					required="true" requiredMessage="O preço é obrigatório.">
+					required="true">
 				</p:inputText>
-				
-				
-				<h:outputLabel value="Descrição:" for="descricao"></h:outputLabel>
-				<p:inputTextarea id="descricao" value="#{livroMB.livro.descricao}" rows="10" cols="50"
-					required="true" requiredMessage="O Campo Descricao é obrigatório."></p:inputTextarea>
-				
+
+
+				<h:outputLabel value="#{msgs.descricao}" for="descricao"></h:outputLabel>
+				<p:inputTextarea id="descricao" value="#{livroMB.livro.descricao}"
+					rows="10" cols="50" required="true"></p:inputTextarea>
+
 				<f:facet name="footer">
 					<h:panelGroup>
 						<p:commandButton id="btnSalvar" action="#{livroMB.acaoSalvar}"
-							ajax="false" value="Salvar"></p:commandButton>
+							ajax="false" value="#{msgs.salvar}"></p:commandButton>
 						<p:commandButton id="btnCancelar" action="#{livroMB.acaoCancelar}"
-							ajax="false" immediate="true" value="Cancelar"></p:commandButton>
+							ajax="false" immediate="true" value="#{msgs.cancelar}"></p:commandButton>
 					</h:panelGroup>
 				</f:facet>
 

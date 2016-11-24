@@ -1,16 +1,16 @@
 package dominio;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "editoras")
 public class Editora implements EntityIdSequencial, Serializable{
 	/**
 	 * 
@@ -23,6 +23,9 @@ public class Editora implements EntityIdSequencial, Serializable{
 	private Long id;
 	private String nomeEditora;
 	private String descricao;
+	
+	@OneToMany(mappedBy= "editora")
+	private List<Livro> livros;
 
 
 	public Long getId() {
@@ -50,6 +53,14 @@ public class Editora implements EntityIdSequencial, Serializable{
 	}	
 	
 	
+	public List<Livro> getLivros() {
+		return livros;
+	}
+
+	public void setLivros(List<Livro> livros) {
+		this.livros = livros;
+	}
+
 	@Override
 	public int hashCode()
 	{
