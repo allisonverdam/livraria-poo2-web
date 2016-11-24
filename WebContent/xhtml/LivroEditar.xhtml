@@ -15,6 +15,13 @@
 		<h:form id="form">
 			<h:inputHidden id="idLivro" value="#{livroMB.livro.id}" />
 			<h:panelGrid columns="2">
+			
+			<h:outputLabel value="Editora:" for="editora"></h:outputLabel>
+				<h:selectOneListbox id="editora" value="#{livroMB.livro.editora}"
+					size="1" converter="livro-converter">
+					<f:selectItems value="#{livroMB.editoras}" var="editora"
+						itemLabel="#{editora.descricao}"></f:selectItems>
+				</h:selectOneListbox>
 
 				<h:outputLabel value="Nome:" for="nome"></h:outputLabel>
 				<p:inputText id="nome" value="#{livroMB.livro.nomeLivro}" size="25"
@@ -35,6 +42,7 @@
 				<p:inputText id="prec" value="#{livroMB.livro.preco}" size="25"
 					required="true" requiredMessage="O preço é obrigatório.">
 				</p:inputText>
+				
 				
 				<h:outputLabel value="Descrição:" for="descricao"></h:outputLabel>
 				<p:inputTextarea id="descricao" value="#{livroMB.livro.descricao}" rows="10" cols="50"

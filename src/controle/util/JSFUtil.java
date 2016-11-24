@@ -1,6 +1,7 @@
 package controle.util;
 
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import javax.el.ELContext;
 import javax.el.ValueExpression;
@@ -17,6 +18,15 @@ import javax.servlet.http.HttpSession;
 public class JSFUtil
 {
 
+	public static String getMensagemI18N(String chave)
+	{
+		FacesContext fc = FacesContext.getCurrentInstance();
+		ResourceBundle rb = ResourceBundle.getBundle("messages.titulos",fc.getViewRoot().getLocale());
+		String mensagem = rb.getString(chave);
+		
+		return mensagem;
+	}
+	
 	public static void retornarMensagemErro(String mensagem, String detalhe, String idComponentePagina)
 	{
 		retornarMensagem(FacesMessage.SEVERITY_ERROR, mensagem, detalhe, idComponentePagina);

@@ -5,8 +5,18 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
 	version="2.0">
 
+	<application>
+		<resource-bundle>
+			<base-name>messages.titulos</base-name>
+			<var>msgs</var>
+		</resource-bundle>
+		<locale-config>
+			<default-locale>pt_BR</default-locale>
+			<supported-locale>en_US</supported-locale>
+		</locale-config>
+	</application>
+
 	<lifecycle>
-		<phase-listener>controle.filtros.TestePhaseListener</phase-listener>
 		<phase-listener>controle.filtros.LoginCheckPhaseListener</phase-listener>
 		<phase-listener>controle.filtros.FinalizadorPhaseListener</phase-listener>
 	</lifecycle>

@@ -9,7 +9,7 @@ import controle.util.JSFUtil;
 import dominio.Cliente;
 import dominio.dao.ClienteDAO;
 
-@ManagedBean(name = "userMB")
+@ManagedBean(name = "clienteMB")
 @RequestScoped
 public class ClienteMB
 {
@@ -41,7 +41,7 @@ public class ClienteMB
 	 */
 	public String acaoListar()
 	{
-		return "ClienteListar";
+		return "clienteListar";
 	}
 
 	/**
@@ -52,7 +52,12 @@ public class ClienteMB
 		// limpar o objeto da página
 		this.setCliente(new Cliente());
 
-		return "ClienteEditar";
+		return "clienteEditar";
+	}
+	
+
+	public void setClientes(List<Cliente> clientes) {
+		Clientes = clientes;
 	}
 
 	/**
@@ -64,7 +69,7 @@ public class ClienteMB
 		Cliente objetoDoBanco = this.dao.lerPorId(id);
 		this.setCliente(objetoDoBanco);
 
-		return "ClienteEditar";
+		return "clienteEditar";
 	}
 
 	/**
@@ -100,7 +105,7 @@ public class ClienteMB
 		// limpar o objeto da página
 		this.setCliente(new Cliente());
 
-		return "ClienteListar";
+		return "clienteListar";
 	}
 
 	/**
@@ -111,7 +116,7 @@ public class ClienteMB
 		// limpar o objeto da página
 		this.setCliente(new Cliente());
 
-		return "ClienteListar";
+		return "clienteListar";
 	}
 
 	/**
@@ -128,7 +133,7 @@ public class ClienteMB
 		// limpa a lista
 		this.Clientes = null;
 
-		return "ClienteListar";
+		return "clienteListar";
 	}
 
 }

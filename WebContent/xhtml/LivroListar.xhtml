@@ -17,7 +17,8 @@
 	</ui:define>
 
 	<ui:define name="conteudo">
-		<h:form id="form">			
+		<h:form id="form">		
+				
 			<p:dataTable id="lista" var="item" value="#{livroMB.livros}"
 				paginator="true" rows="3" rowsPerPageTemplate="5,10,15"
 				selectionMode="single">
@@ -37,6 +38,13 @@
 						<h:outputText value="Ano de Lançamento" />
 					</f:facet>
 					<h:outputText value="#{item.anoLancamento}"/>
+				</p:column>
+				
+				<p:column sortBy="#{item.editora.descricao}">
+					<f:facet name="header">
+						<h:outputText value="Editora" />
+					</f:facet>
+					<h:outputText value="#{item.editora.nomeEditora}" />
 				</p:column>
 
 				<p:column sortBy="#{item.descricao}">

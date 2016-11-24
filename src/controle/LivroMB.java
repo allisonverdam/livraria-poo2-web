@@ -6,49 +6,77 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import controle.util.JSFUtil;
+import dominio.Editora;
 import dominio.Livro;
+import dominio.dao.EditoraDAO;
 import dominio.dao.LivroDAO;
 
 @ManagedBean(name = "livroMB")
 @RequestScoped
-public class LivroMB
-{
+public class LivroMB {
+
+
 	private Livro livro = new Livro();
 	private LivroDAO dao = new LivroDAO();
+	private Editora filtroEditora = null;
 
-	private List<Livro> Livros = null;
+	private List<Livro> livros = null;
+	private List<Editora> editoras = null;
+
+
+	public List<Editora> getEditoras() {
+		if (this.editoras == null)
+			this.editoras = new EditoraDAO().lerTodos();
+
+		return this.editoras;
+	}
 
 	public List<Livro> getLivros()
 	{
-		if (this.Livros == null)
-			this.Livros = this.dao.lerTodos();
+		if (this.livros == null)
+			this.livros = this.dao.lerTodos();
 
-		return this.Livros;
+		return this.livros;
+	}
+	
+	public Editora getFiltroEditora() {
+		return filtroEditora;
 	}
 
-	public Livro getLivro()
-	{
+	public void setFiltroEditora(Editora filtroEditora) {
+		this.filtroEditora = filtroEditora;
+	}
+
+	public void setLivros(List<Livro> livros) {
+		this.livros = livros;
+	}
+
+
+
+
+	public void setEditoras(List<Editora> editoras) {
+		this.editoras = editoras;
+	}
+
+	public Livro getLivro() {
 		return livro;
 	}
 
-	public void setLivro(Livro livro)
-	{
+	public void setLivro(Livro livro) {
 		this.livro = livro;
 	}
 
 	/**
 	 * 
 	 */
-	public String acaoListar()
-	{
+	public String acaoListar() {
 		return "LivroListar";
 	}
 
 	/**
 	 * 
 	 */
-	public String acaoAbrirInclusao()
-	{
+	public String acaoAbrirInclusao() {
 		// limpar o objeto da página
 		this.setLivro(new Livro());
 
@@ -58,67 +86,55 @@ public class LivroMB
 	/**
 	 * 
 	 */
-	public String acaoAbrirAlteracao()
-	{
+	public String acaoAbrirAlteracao() {
+		// pega o ID escolhido que veio no parâmetro
 		Long id = JSFUtil.getParametroLong("itemId");
 		Livro objetoDoBanco = this.dao.lerPorId(id);
 		this.setLivro(objetoDoBanco);
 
 		return "LivroEditar";
 	}
+	
+	
 
 	/**
 	 * 
 	 */
-	public String acaoSalvar()
-	{
+	public String acaoSalvar() {
 		/**
 		 * Deve limpar o ID com valor zero, pois o JSF sempre converte o campo
 		 * vazio para um LONG = 0.
 		 */
-		if ((this.getLivro().getId() != null) && (this.getLivro().getId().longValue() == 0))
+		if ((this.getLivro().getId() != null)
+				&& (this.getLivro().getId().longValue() == 0))
 			this.getLivro().setId(null);
-
-		/**
-		 * Se o usuário não tiver ID, deve testar se existe o mesmo no banco
-		 */
-		if (this.getLivro().getId() == null)
-		{
-			Livro objetoDoBanco = this.dao.lerPorNome(this.getLivro().getNomeLivro());
-
-			if (objetoDoBanco != null)
-			{
-				JSFUtil.retornarMensagemErro("Outro usuário com o mesmo login já existe no sistema.", null, null);
-				return null; // volta p/mesma página
-			}
-		}
 
 		this.dao.salvar(this.getLivro());
 		// limpa a lista
-		this.Livros = null;
+		this.livros = null;
 
 		// limpar o objeto da página
 		this.setLivro(new Livro());
 
-		return "LivroListar";
+		// executa a ação listar e retorna a sua página
+		return this.acaoListar();
 	}
 
 	/**
 	 * 
 	 */
-	public String acaoCancelar()
-	{
+	public String acaoCancelar() {
 		// limpar o objeto da página
 		this.setLivro(new Livro());
 
-		return "LivroListar";
+		// executa a ação listar e retorna a sua página
+		return this.acaoListar();
 	}
 
 	/**
 	 * 
 	 */
-	public String acaoExcluir()
-	{
+	public String acaoExcluir() {
 		Long id = JSFUtil.getParametroLong("itemId");
 		Livro objetoDoBanco = this.dao.lerPorId(id);
 		this.dao.excluir(objetoDoBanco);
@@ -126,9 +142,10 @@ public class LivroMB
 		// limpar o objeto da página
 		this.setLivro(new Livro());
 		// limpa a lista
-		this.Livros = null;
+		this.livros = null;
 
-		return "LivroListar";
+		// executa a ação listar e retorna a sua página
+		return this.acaoListar();
 	}
 
 }

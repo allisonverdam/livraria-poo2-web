@@ -1,25 +1,26 @@
 package dominio;
 
-import java.util.List;
+import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "livros")
-public class Livro {
+public class Livro implements EntityIdSequencial, Serializable{	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_LIVRO")
-	@SequenceGenerator(name = "ID_LIVRO", sequenceName = "SEQ_ID_LIVRO",
-	                    allocationSize = 1, initialValue=1)
+	@GeneratedValue(generator = "LIVRO_ID", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "LIVRO_ID", sequenceName = "SEQ_LIVRO", allocationSize = 1)
 	private Long id;
 	private String nomeLivro;
 	private String descricao;
@@ -27,21 +28,9 @@ public class Livro {
 	private int numPaginas;
 	private float preco;
 	
-	@OneToMany(mappedBy="livro", cascade = CascadeType.ALL, fetch= FetchType.LAZY)
-	private List<Compra> compra;
+	@ManyToOne
+	private Editora editora;
 	
-	public Livro(String nomeLivro, String descricao, int anoLancamento, int numPaginas, float preco) {
-		super();
-		this.preco = preco;
-		this.nomeLivro = nomeLivro;
-		this.descricao = descricao;
-		this.anoLancamento = anoLancamento;
-		this.numPaginas = numPaginas;
-	}	
-	
-	public Livro() {
-		super();
-	}
 
 	public Long getId() {
 		return id;
@@ -91,16 +80,51 @@ public class Livro {
 	public void setNumPaginas(int numPaginas) {
 		this.numPaginas = numPaginas;
 	}
-
-	public List<Compra> getCompra() {
-		return compra;
+	
+	public Editora getEditora() {
+		return editora;
 	}
 
-	public void setCompra(List<Compra> compra) {
-		this.compra = compra;
+	public void setEditora(Editora editora) {
+		this.editora = editora;
 	}
 	
 	
+	
+	@Override
+	public int hashCode()
+	{
+		if (this.id == null)
+			return 0;
+
+		return this.id.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Livro other = (Livro) obj;
+		if (id == null)
+		{
+			if (other.id != null)
+				return false;
+		}
+		else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString()
+	{
+		return this.descricao;
+	}
 
 	
 }

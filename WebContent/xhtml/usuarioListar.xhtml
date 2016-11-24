@@ -5,7 +5,8 @@
 	xmlns:p="http://primefaces.prime.com.tr/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:composite="http://java.sun.com/jsf/composite">
 
 <ui:composition template="_modelo.xhtml">
 
@@ -13,7 +14,7 @@
 
 	<ui:define name="opcoesMenu">
 		<p:commandButton ajax="false" type="push" value="Novo Usuário"
-			action="#{userMB.acaoAbrirInclusao}" immediate="true"
+			action="#{clienteMB.acaoAbrirInclusao}" immediate="true"
 			image="ui-icon-document" />
 	</ui:define>
 
@@ -21,9 +22,9 @@
 		<h:form id="form">
 
 			<br />
-			<p:dataTable id="lista" var="item" value="#{userMB.usuarios}"
+			<p:dataTable id="lista" var="item" value="#{clienteMB.clientes}"
 				paginator="true" rows="15" rowsPerPageTemplate="5,10,15"
-				selectionMode="single" rendered="#{not empty userMB.usuarios}">
+				selectionMode="single" rendered="#{not empty clienteMB.clientes}">
 
 				<f:facet name="header">
 					<h:outputText value="Lista de Usuários Cadastrados:" />
@@ -49,7 +50,7 @@
 					</f:facet>
 					<h:panelGroup>
 						<p:commandButton ajax="false" type="push" value="Alterar"
-							action="#{userMB.acaoAbrirAlteracao}" immediate="true"
+							action="#{clienteMB.acaoAbrirAlteracao}" immediate="true"
 							image="ui-icon-pencil">
 							<f:param value="#{item.id}" name="itemId" />
 						</p:commandButton>
@@ -64,7 +65,7 @@
 							widgetVar="conf#{item.id}">
 
 							<p:commandButton ajax="false" type="push" value="Sim"
-								action="#{userMB.acaoExcluir}" immediate="true"
+								action="#{clienteMB.acaoExcluir}" immediate="true"
 								image="ui-icon-check">
 								<f:param value="#{item.id}" name="itemId" />
 							</p:commandButton>

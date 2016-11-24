@@ -16,10 +16,11 @@ public class LoginMB implements Serializable
 	private static final long serialVersionUID = 1L;
 
 	private boolean autenticado = false;
-	private Cliente Cliente = new Cliente(null, "(não autenticado)", null);
+	private Cliente Cliente = new Cliente(null, null, "(não autenticado)", null);
 
 	private String login;
 	private String senha;
+	private String email;
 
 	public Cliente getCliente()
 	{
@@ -54,6 +55,14 @@ public class LoginMB implements Serializable
 	public void setSenha(String senha)
 	{
 		this.senha = senha;
+	}	
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	/**
@@ -110,10 +119,11 @@ public class LoginMB implements Serializable
 	 */
 	public String acaoLogout()
 	{
-		this.Cliente = new Cliente(null, "(não autenticado)", null);
+		this.Cliente = new Cliente(null, null, "(não autenticado)", null);
 		this.autenticado = false;
 		this.login = null;
 		this.senha = null;
+		this.email = null;
 
 		// encerrar a sessão atual
 		JSFUtil.getHttpSession().invalidate();

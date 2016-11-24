@@ -28,6 +28,10 @@ public class Compra {
 	@JoinColumn(name="ID_LIVRO")
 	private Livro livro;
 	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="ID_EDITORA")
+	private Editora editora;
+	
 	public Compra() {
 		super();
 	}

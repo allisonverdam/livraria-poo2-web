@@ -24,16 +24,18 @@ public class Cliente implements EntityIdSequencial, Serializable
 
 	private String nome;
 	private String senha;
+	private String email;
 
 	/**
 	 * 
 	 */
-	public Cliente(String login, String nome, String senha)
+	public Cliente(String login, String email, String nome, String senha)
 	{
 		super();
 		this.login = login;
 		this.nome = nome;
 		this.senha = senha;
+		this.email = email;
 	}
 
 	/**
@@ -80,6 +82,14 @@ public class Cliente implements EntityIdSequencial, Serializable
 	public void setNome(String nome)
 	{
 		this.nome = nome;
+	}	
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getSenha()
